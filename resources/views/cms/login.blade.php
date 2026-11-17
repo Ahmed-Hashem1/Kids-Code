@@ -51,7 +51,7 @@
         </a>
 
         <!-- أيقونة وزر الرجوع إلى الموقع الرئيسي -->
-        <a href="{{route('parent')}}" title="العودة إلى الصفحة الرئيسية" class="inline-flex items-center gap-2 bg-white hover:bg-brandBlue-50 text-slate-600 hover:text-brandBlue-600 font-extrabold text-xs px-4 py-2.5 rounded-2xl border border-slate-200/80 shadow-sm transition-all hover:scale-105 group">
+        <a href="{{ route('cms.parent') }}" title="العودة إلى الصفحة الرئيسية" class="inline-flex items-center gap-2 bg-white hover:bg-brandBlue-50 text-slate-600 hover:text-brandBlue-600 font-extrabold text-xs px-4 py-2.5 rounded-2xl border border-slate-200/80 shadow-sm transition-all hover:scale-105 group">
             <svg class="w-4 h-4 text-brandBlue-600 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>

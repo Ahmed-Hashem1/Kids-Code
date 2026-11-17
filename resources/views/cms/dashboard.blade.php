@@ -247,7 +247,9 @@
             </li>
 
             <li class="nav-item d-none d-md-block">
-              <a href="{{ route('parent') }}" class="nav-link fw-bold text-primary">
+            <a href="{{ route('cms.parent') }}" class="nav-link fw-bold text-primary">
+
+                
                 <i class="bi bi-globe2 me-1" aria-hidden="true"></i>
                 معاينة المنصة
               </a>
