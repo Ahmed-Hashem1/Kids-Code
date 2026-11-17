@@ -247,7 +247,7 @@
             </li>
 
             <li class="nav-item d-none d-md-block">
-              <a href="{{ url('/') }}" class="nav-link fw-bold text-primary">
+              <a href="{{ route('parent') }}" class="nav-link fw-bold text-primary">
                 <i class="bi bi-globe2 me-1" aria-hidden="true"></i>
                 معاينة المنصة
               </a>
@@ -286,7 +286,7 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                href="{{ url('/login') }}"
+                href="{{route('login')}}"
                 title="صفحة تسجيل الدخول"
                 aria-label="صفحة تسجيل الدخول"
               >

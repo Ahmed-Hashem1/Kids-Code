@@ -16,8 +16,8 @@
                 extend: {
                     fontFamily: { sans: ['Tajawal', 'sans-serif'] },
                     colors: {
-                        brandBlue: { 500: '#2563eb', 600: '#1d4ed8', 700: '#1e40af' },
-                        brandMint: { 400: '#34d399', 500: '#10b981', 600: '#059669' }
+                        brandBlue: { 50: '#eff6ff', 500: '#2563eb', 600: '#1d4ed8', 700: '#1e40af' },
+                        brandMint: { 50: '#ecfdf5', 400: '#34d399', 500: '#10b981', 600: '#059669' }
                     },
                     boxShadow: {
                         'soft': '0 15px 35px -5px rgba(37, 99, 235, 0.08), 0 5px 15px -3px rgba(16, 185, 129, 0.05)'
@@ -35,9 +35,10 @@
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between py-10 px-4">
 
-    <!-- شعار المنصة العلوي -->
-    <div class="max-w-md mx-auto text-center mb-6">
-        <a href="#" class="inline-flex items-center gap-3 group">
+    <!-- الشريط العلوي: الشعار + زر الرجوع إلى الموقع -->
+    <div class="max-w-md w-full mx-auto flex items-center justify-between mb-6">
+        <!-- شعار المنصة -->
+        <a href="index.html" class="inline-flex items-center gap-3 group">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brandBlue-600 to-brandMint-500 flex items-center justify-center text-white shadow-soft group-hover:scale-105 transition-transform">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -47,6 +48,14 @@
                 <span class="text-2xl font-black bg-gradient-to-l from-brandBlue-600 to-brandMint-600 bg-clip-text text-transparent">كودي</span>
                 <span class="block text-xs font-bold text-slate-400 -mt-1">بوابة الدخول الموحدة</span>
             </div>
+        </a>
+
+        <!-- أيقونة وزر الرجوع إلى الموقع الرئيسي -->
+        <a href="{{route('parent')}}" title="العودة إلى الصفحة الرئيسية" class="inline-flex items-center gap-2 bg-white hover:bg-brandBlue-50 text-slate-600 hover:text-brandBlue-600 font-extrabold text-xs px-4 py-2.5 rounded-2xl border border-slate-200/80 shadow-sm transition-all hover:scale-105 group">
+            <svg class="w-4 h-4 text-brandBlue-600 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+            <span>الرجوع للموقع</span>
         </a>
     </div>
 
@@ -112,7 +121,7 @@
         <div id="content-admin" class="tab-content space-y-5">
             <div class="space-y-1">
                 <h2 class="text-xl font-black text-slate-900">دخول المدير / المشرف</h2>
-                <p class="text-xs text-slate-500 font-bold">إدارة المسارات والمحتوى والنشر والحسابات[cite: 3, 15].</p>
+                <p class="text-xs text-slate-500 font-bold">إدارة المسارات والمحتوى والنشر والحسابات.</p>
             </div>
             <form onsubmit="handleLogin(event, 'لوحة تحكم المدير')" class="space-y-4">
                 <div>
@@ -133,7 +142,7 @@
 
     <!-- تذييل الصفحة -->
     <footer class="text-center mt-6 text-xs text-slate-400 font-bold">
-        منصة كودي لتعليم البرمجة للأطفال © 2026 • حماية تامة وآمنة للبيانات[cite: 15, 20]
+        منصة كودي لتعليم البرمجة للأطفال © 2026 • حماية تامة وآمنة للبيانات
     </footer>
 
     <!-- جافاسكريبت للتحويل والتفاعل -->
