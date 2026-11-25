@@ -43,8 +43,8 @@
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#0d6efd" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
     <!--end::Accessibility Meta Tags-->
 
     <!--begin::Primary Meta Tags-->
@@ -61,7 +61,7 @@
     <link rel="preload" href="{{ asset('cms/css/adminlte.rtl.css') }}" as="style" />
     <!--end::Accessibility Features-->
 
-    <!--begin::Fonts (Tajawal Arabic Font + Source Sans 3)-->
+    <!--begin::Fonts (Tajawal Arabic Font)-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -88,65 +88,73 @@
 
     <!--begin::Required Plugin(AdminLTE RTL)-->
     <link rel="stylesheet" href="{{ asset('cms/css/adminlte.rtl.css') }}" />
-    <!-- Fallback CDN for standalone preview without Laravel asset() -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-beta3/dist/css/adminlte.rtl.min.css"
-      onerror="this.remove()"
-    />
     <!--end::Required Plugin(AdminLTE)-->
 
     <style>
       :root {
         --bs-body-font-family: 'Tajawal', system-ui, -apple-system, sans-serif;
         --kody-blue: #2563eb;
+        --kody-indigo: #4f46e5;
         --kody-mint: #10b981;
+        --kody-amber: #f59e0b;
+        --kody-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.06), 0 2px 8px -2px rgba(15, 23, 42, 0.04);
+      }
+
+      [data-bs-theme='dark'] {
+        --kody-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.45);
       }
 
       body {
         font-family: 'Tajawal', sans-serif !important;
+        letter-spacing: -0.01em;
       }
 
-      /* تحسين شعار كودي في القائمة الجانبية */
+      /* شريط علوي عصري متناسق */
+      .app-header.navbar {
+        backdrop-filter: blur(12px);
+        background-color: rgba(var(--bs-body-bg-rgb), 0.9) !important;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.16) !important;
+      }
+
+      /* شعار كودي في القائمة الجانبية */
       .kody-brand-link {
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        padding: 0.85rem 1rem;
+        padding: 0.9rem 1rem;
         text-decoration: none;
-        transition: all 0.25s ease;
+        transition: transform 0.25s ease;
       }
 
       .kody-brand-link:hover {
-        transform: translateY(-1px);
+        transform: translateX(-2px);
       }
 
       .kody-logo-badge {
         width: 42px;
         height: 42px;
-        border-radius: 12px;
+        border-radius: 13px;
         background: linear-gradient(135deg, #2563eb 0%, #10b981 100%);
         display: flex;
         align-items: center;
         justify-content: center;
         color: #ffffff;
-        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+        box-shadow: 0 8px 18px rgba(16, 185, 129, 0.32);
         flex-shrink: 0;
         transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
 
       .kody-brand-link:hover .kody-logo-badge {
-        transform: rotate(-6deg) scale(1.06);
+        transform: rotate(-7deg) scale(1.06);
       }
 
       .kody-brand-title {
-        font-size: 1.45rem;
+        font-size: 1.48rem;
         font-weight: 900;
         background: linear-gradient(90deg, #60a5fa 0%, #34d399 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         line-height: 1.1;
-        letter-spacing: -0.3px;
       }
 
       .kody-brand-subtitle {
@@ -157,58 +165,140 @@
         margin-top: 2px;
       }
 
-      /* تحسين البطاقات والـ Sidebar */
+      /* القائمة الجانبية */
       .app-sidebar {
-        background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%) !important;
+        background: linear-gradient(180deg, #0b1120 0%, #162033 55%, #0f172a 100%) !important;
+      }
+
+      .sidebar-menu .nav-header {
+        font-size: 0.71rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        color: #64748b !important;
+        padding: 0.85rem 1.1rem 0.25rem;
       }
 
       .sidebar-menu .nav-link {
         border-radius: 0.75rem;
-        margin: 0.15rem 0.5rem;
+        margin: 0.16rem 0.6rem;
+        padding: 0.56rem 0.85rem;
         font-weight: 600;
+        color: #cbd5e1;
         transition: all 0.2s ease;
+      }
+
+      .sidebar-menu .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.07);
+        color: #ffffff;
+        transform: translateX(-2px);
       }
 
       .sidebar-menu .nav-link.active {
         background: linear-gradient(135deg, #2563eb 0%, #10b981 100%) !important;
-        color: #fff !important;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        color: #ffffff !important;
+        font-weight: 700;
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.32);
       }
 
+      .sidebar-menu .nav-treeview .nav-link {
+        padding-top: 0.42rem;
+        padding-bottom: 0.42rem;
+        font-size: 0.89rem;
+      }
+
+      /* بطاقات الإحصائيات المتدرجة */
       .kody-stat-card {
         border: none;
-        border-radius: 1.1rem;
-        box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        border-radius: 1.15rem;
+        box-shadow: var(--kody-shadow);
+        transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
         overflow: hidden;
+        position: relative;
       }
 
       .kody-stat-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
+        box-shadow: 0 16px 30px -8px rgba(15, 23, 42, 0.16);
       }
 
+      .kody-stat-card.kody-grad-blue {
+        background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+        color: #fff;
+      }
+
+      .kody-stat-card.kody-grad-mint {
+        background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        color: #fff;
+      }
+
+      .kody-stat-card.kody-grad-indigo {
+        background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+        color: #fff;
+      }
+
+      .kody-stat-card.kody-grad-amber {
+        background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        color: #1e293b;
+      }
+
+      .kody-stat-icon-box {
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .kody-stat-card.kody-grad-amber .kody-stat-icon-box {
+        background: rgba(15, 23, 42, 0.1);
+      }
+
+      /* البطاقات العامة والجداول */
       .kody-card {
-        border: none;
-        border-radius: 1.1rem;
-        box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
+        border: 1px solid rgba(148, 163, 184, 0.15);
+        border-radius: 1.15rem;
+        box-shadow: var(--kody-shadow);
       }
 
       .kody-card .card-header {
         background-color: transparent;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-        padding: 1rem 1.25rem;
-        font-weight: 800;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+        padding: 1rem 1.3rem;
       }
 
+      .kody-table thead th {
+        font-size: 0.82rem;
+        font-weight: 800;
+        padding: 0.85rem 1.15rem;
+        border-bottom-width: 1px;
+      }
+
+      .kody-table tbody td {
+        padding: 0.95rem 1.15rem;
+      }
+
+      .kody-table tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      /* حقل البحث العلوي */
       .navbar-search-field {
         position: relative;
-        width: 280px;
+        width: 300px;
       }
 
       .navbar-search-field .form-control {
         border-radius: 0.85rem;
         padding-left: 2.5rem;
+        border-color: rgba(148, 163, 184, 0.28);
+      }
+
+      .navbar-search-field .form-control:focus {
+        border-color: var(--kody-blue);
+        box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15);
       }
 
       .navbar-search-submit {
@@ -219,8 +309,28 @@
         border: none;
         background: transparent;
         color: #64748b;
+        transition: color 0.2s ease;
+      }
+
+      .navbar-search-submit:hover {
+        color: var(--kody-blue);
+      }
+
+      /* أدوات مساعدة غير موجودة في Bootstrap افتراضياً */
+      .fw-black {
+        font-weight: 900 !important;
+      }
+
+      .fs-7 {
+        font-size: 0.875rem !important;
+      }
+
+      .fs-8 {
+        font-size: 0.75rem !important;
       }
     </style>
+
+    @yield('style')
   </head>
   <!--end::Head-->
 
@@ -229,14 +339,14 @@
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
-      <nav class="app-header navbar navbar-expand bg-body border-bottom">
+      <nav class="app-header navbar navbar-expand sticky-top">
         <!--begin::Container-->
         <div class="container-fluid">
           <!--begin::Start Navbar Links-->
-          <ul class="navbar-nav align-items-center">
+          <ul class="navbar-nav align-items-center gap-1">
             <li class="nav-item">
               <a
-                class="nav-link"
+                class="nav-link rounded-3"
                 data-lte-toggle="sidebar"
                 href="#"
                 role="button"
@@ -247,15 +357,13 @@
             </li>
 
             <li class="nav-item d-none d-md-block">
-            <a href="{{ route('cms.parent') }}" class="nav-link fw-bold text-primary">
-
-                
+              <a href="{{ route('cms/home') }}" class="nav-link fw-bold text-primary rounded-3 px-3">
                 <i class="bi bi-globe2 me-1" aria-hidden="true"></i>
                 معاينة المنصة
               </a>
             </li>
             <li class="nav-item d-none d-md-block">
-              <a href="#" class="nav-link fw-semibold">
+              <a href="{{ route('cms/Paths') }}" class="nav-link fw-semibold rounded-3 px-3">
                 <i class="bi bi-diagram-3 me-1" aria-hidden="true"></i>
                 المسارات التعليمية
               </a>
@@ -287,8 +395,8 @@
             <!--begin::Login Page Link Button-->
             <li class="nav-item">
               <a
-                class="nav-link"
-                href="{{route('login')}}"
+                class="nav-link rounded-3"
+                href="{{ url('/login') }}"
                 title="صفحة تسجيل الدخول"
                 aria-label="صفحة تسجيل الدخول"
               >
@@ -300,7 +408,7 @@
             <!--begin::Platform Settings Button-->
             <li class="nav-item">
               <a
-                class="nav-link"
+                class="nav-link rounded-3"
                 href="#platform-settings"
                 title="إعدادات المنصة"
                 aria-label="إعدادات المنصة"
@@ -313,7 +421,7 @@
             <!--begin::Notifications Dropdown Menu-->
             <li class="nav-item dropdown">
               <a
-                class="nav-link position-relative"
+                class="nav-link position-relative rounded-3"
                 data-bs-toggle="dropdown"
                 href="#"
                 aria-label="الإشعارات"
@@ -322,7 +430,10 @@
                 <span class="navbar-badge badge rounded-pill text-bg-success">5</span>
               </a>
               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end shadow border-0 rounded-4">
-                <span class="dropdown-item dropdown-header fw-bold">5 إشعارات جديدة</span>
+                <span class="dropdown-item dropdown-header fw-bold d-flex justify-content-between align-items-center">
+                  <span>5 إشعارات جديدة</span>
+                  <span class="badge text-bg-primary rounded-pill">اليوم</span>
+                </span>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item py-2">
                   <i class="bi bi-person-plus-fill text-primary me-2"></i> تسجيل ولي أمر جديد
@@ -349,7 +460,7 @@
             <!--begin::Fullscreen Toggle-->
             <li class="nav-item">
               <a
-                class="nav-link"
+                class="nav-link rounded-3"
                 href="#"
                 data-lte-toggle="fullscreen"
                 aria-label="ملء الشاشة"
@@ -363,7 +474,7 @@
             <!--begin::Color Mode Toggle-->
             <li class="nav-item dropdown">
               <a
-                class="nav-link"
+                class="nav-link rounded-3"
                 href="#"
                 id="bd-theme"
                 aria-label="تبديل المظهر"
@@ -377,7 +488,7 @@
               <ul
                 class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3"
                 aria-labelledby="bd-theme"
-                style="--bs-dropdown-min-width: 9rem"
+                style="--bs-dropdown-min-width: 9.5rem"
               >
                 <li>
                   <button
@@ -421,18 +532,18 @@
 
             <!--begin::User Menu Dropdown-->
             <li class="nav-item dropdown user-menu">
-              <a href="#" class="nav-link dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+              <a href="#" class="nav-link dropdown-toggle d-flex align-items-center gap-2 rounded-3" data-bs-toggle="dropdown">
                 <div
-                  class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold shadow-sm"
-                  style="width: 34px; height: 34px"
+                  class="rounded-circle text-white d-flex align-items-center justify-content-center fw-bold shadow-sm"
+                  style="width: 34px; height: 34px; background: linear-gradient(135deg, #2563eb 0%, #10b981 100%)"
                 >
-                  م
+                  {{ mb_substr(auth()->user()->name ?? 'م', 0, 1) }}
                 </div>
-                <span class="d-none d-xl-inline fw-bold">مدير النظام</span>
+                <span class="d-none d-xl-inline fw-bold">{{ auth()->user()->name ?? 'مدير النظام' }}</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end shadow border-0 rounded-4 overflow-hidden">
                 <!--begin::User Image-->
-                <li class="user-header text-bg-primary py-4">
+                <li class="user-header text-white py-4" style="background: linear-gradient(135deg, #2563eb 0%, #10b981 100%)">
                   <div
                     class="rounded-circle bg-white text-primary d-inline-flex align-items-center justify-content-center fw-black fs-3 shadow mb-2"
                     style="width: 64px; height: 64px"
@@ -440,15 +551,19 @@
                     <i class="bi bi-shield-lock-fill"></i>
                   </div>
                   <p class="fw-bold mb-0">
-                    مدير منصة كودي
-                    <small class="d-block opacity-75">إدارة المحتوى والمسارات التعليمية</small>
+                    {{ auth()->user()->name ?? 'مدير منصة كودي' }}
+                    <small class="d-block opacity-90">إدارة المحتوى والمسارات التعليمية</small>
                   </p>
                 </li>
                 <!--end::User Image-->
                 <!--begin::Menu Footer-->
                 <li class="user-footer d-flex justify-content-between p-3 bg-body-tertiary">
+                  {{-- ضع رابط صفحة الملف الشخصي هنا عند توفرها --}}
                   <a href="#" class="btn btn-sm btn-outline-primary rounded-3 fw-bold">الملف الشخصي</a>
-                  <a href="#" class="btn btn-sm btn-outline-danger rounded-3 fw-bold">تسجيل الخروج</a>
+                  <form action="{{ url('/logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-outline-danger rounded-3 fw-bold">تسجيل الخروج</button>
+                  </form>
                 </li>
                 <!--end::Menu Footer-->
               </ul>
@@ -463,11 +578,10 @@
 
       <!--begin::Sidebar-->
       <aside class="app-sidebar shadow" data-bs-theme="dark">
-        <!--begin::Sidebar Brand (شعار كودي المحسّن مع أيقونة برمجية)-->
+        <!--begin::Sidebar Brand (شعار كودي المحسّن)-->
         <div class="sidebar-brand border-bottom border-secondary border-opacity-25">
           <a href="{{ url('/admin') }}" class="kody-brand-link">
             <div class="kody-logo-badge" aria-hidden="true">
-              <!-- أيقونة SVG مخصصة تجمع بين وسوم البرمجة </> والصاروخ التعليمي -->
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="16 18 22 12 16 6"></polyline>
                 <polyline points="8 6 2 12 8 18"></polyline>
@@ -512,138 +626,226 @@
             >
               <!-- الرئيسية -->
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="{{ url('/admin') }}" class="nav-link {{ request()->is('admin') ? 'active' : '' }}">
                   <i class="nav-icon bi bi-grid-1x2-fill"></i>
                   <p>لوحة التحكم الرئيسية</p>
                 </a>
               </li>
 
-              <li class="nav-header text-uppercase fs-7 text-secondary mt-2">إدارة المحتوى التعليمي</li>
+              <li class="nav-header text-uppercase">إدارة المحتوى التعليمي</li>
 
-              <!-- المسارات والفئات العمرية -->
-              <li class="nav-item">
-                <a href="#" class="nav-link">
+              <!-- جدول pathways -->
+              <li class="nav-item {{ request()->routeIs('admin.pathways.*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link {{ request()->routeIs('admin.pathways.*') ? 'active' : '' }}">
                   <i class="nav-icon bi bi-signpost-split-fill text-info"></i>
                   <p>
-                    المسارات والفئات العمرية
-                    <span class="nav-badge badge text-bg-info me-3">3</span>
+                    المسارات والتصنيفات
+                    <span class="nav-badge badge rounded-pill text-bg-info me-3">3</span>
                     <i class="nav-arrow bi bi-chevron-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
+                    <a href="{{ route('pathways.index') }}" class="nav-link {{ request()->routeIs('pathways.*') ? 'active' : '' }}">
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>قائمة المسارات</p>
+                    </a>
+                  </li>
+                  {{-- <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
                       <p>مسار البراعم (7 - 9 سنوات)</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
                       <p>مسار بايثون (10 - 12 سنة)</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
                       <p>مسار المحترفين (13 - 15 سنة)</p>
+                    </a>
+                  </li> --}}
+                </ul>
+              </li>
+
+              <!-- جدول courses -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-journal-bookmark-fill text-primary"></i>
+                  <p>
+                    الدورات
+                    <i class="nav-arrow bi bi-chevron-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>قائمة الدورات</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>بانتظار الاعتماد</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>الدورات المنشورة</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>الدورات المرفوضة</p>
                     </a>
                   </li>
                 </ul>
               </li>
 
-              <!-- الدورات والدروس -->
+              <!-- جدول lessons -->
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-journal-code text-success"></i>
                   <p>
-                    الدروس والتحديات
+                    الدروس
                     <i class="nav-arrow bi bi-chevron-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>قائمة الدروس (27 درساً)</p>
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>قائمة الدروس</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>بنك التحديات الأربعة</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>إدارة نسخ النشر (Versions)</p>
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>إضافة درس جديد</p>
                     </a>
                   </li>
                 </ul>
               </li>
 
-              <!-- الاختبارات والتقييم -->
+              <!-- جدول quizzes -->
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-patch-check-fill text-warning"></i>
+                  <i class="nav-icon bi bi-patch-question-fill text-warning"></i>
                   <p>
-                    الاختبارات والتقييم
+                    الاختبارات والتحديات
                     <i class="nav-arrow bi bi-chevron-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>اختبار تحديد المستوى</p>
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>قائمة الاختبارات</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>اختبارات نهاية المستوى</p>
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>اختيار من متعدد (MCQ)</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>سحب وإفلات (Drag & Drop)</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>ترتيب الخطوات (Reorder)</p>
                     </a>
                   </li>
                 </ul>
               </li>
 
-              <li class="nav-header text-uppercase fs-7 text-secondary mt-2">المستخدمون والتحفيز</li>
+              <li class="nav-header text-uppercase">المستخدمون والتحفيز</li>
 
-              <!-- أولياء الأمور والطلاب -->
+              <!-- جدول users -->
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-people-fill text-primary"></i>
                   <p>
-                    أولياء الأمور والأطفال
+                    المستخدمون
                     <i class="nav-arrow bi bi-chevron-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>إدارة أولياء الأمور</p>
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>المديرون</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>ملفات الأطفال المسجلين</p>
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>المعلمون</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>أولياء الأمور</p>
                     </a>
                   </li>
                 </ul>
               </li>
 
-              <!-- الأوسمة ونقاط الخبرة -->
+              <!-- جدول kid_profiles -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-emoji-smile-fill text-success"></i>
+                  <p>ملفات الأطفال</p>
+                </a>
+              </li>
+
+              <!-- جدول kid_lesson_progress -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-stars text-info"></i>
+                  <p>تقدم التعلم والنجوم</p>
+                </a>
+              </li>
+
+              <!-- جدولا badges و kid_badges -->
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-trophy-fill text-warning"></i>
                   <p>
                     الأوسمة ونظام التلعيب
+                    <i class="nav-arrow bi bi-chevron-left"></i>
                   </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>قائمة الأوسمة</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
+                      <p>الأوسمة الممنوحة للأطفال</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
+
+              <li class="nav-header text-uppercase">النظام</li>
 
               <!-- إعدادات المنصة -->
               <li class="nav-item">
@@ -657,19 +859,19 @@
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
                       <p>الإعدادات العامة والهوية</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
                       <p>قواعد التلعيب والنقاط (XP)</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
+                      <i class="nav-icon bi bi-circle-fill fs-8"></i>
                       <p>الأمان والخصوصية</p>
                     </a>
                   </li>
@@ -683,6 +885,7 @@
                   <p>التقارير والإحصائيات</p>
                 </a>
               </li>
+
               <!-- تسجيل الدخول -->
               <li class="nav-item">
                 <a href="{{ url('/login') }}" class="nav-link">
@@ -691,13 +894,13 @@
                 </a>
               </li>
             </ul>
-            <!--end::Sidebar Menu-->
+<!--end::Sidebar Menu-->
 
             <!-- Docs CTA (bottom of sidebar) -->
             <div class="p-3 mt-4 border-top border-secondary border-opacity-25">
               <a
                 href="#"
-                class="btn btn-sm btn-outline-info w-100 d-flex align-items-center justify-content-center gap-2 rounded-3 fw-bold"
+                class="btn btn-sm btn-outline-info w-100 d-flex align-items-center justify-content-center gap-2 rounded-3 fw-bold py-2"
               >
                 <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
                 وثيقة تحليل النظام (SRS)
@@ -712,19 +915,27 @@
       <!--begin::App Main-->
       <main class="app-main">
         <!--begin::App Content Header-->
-        <div class="app-content-header">
+        <div class="app-content-header py-3">
           <!--begin::Container-->
           <div class="container-fluid">
             <!--begin::Row-->
-            <div class="row align-items-center">
+            <div class="row align-items-center g-2">
               <div class="col-sm-6">
                 <h1 class="mb-0 fs-3 fw-black">@yield('sub_title', 'نظرة عامة على المنصة')</h1>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-6 d-flex align-items-center justify-content-sm-end gap-3">
+                <div class="d-none d-md-flex gap-2">
+                  <a href="#" class="btn btn-primary btn-sm rounded-3 fw-bold px-3 shadow-sm">
+                    <i class="bi bi-plus-circle me-1"></i> درس جديد
+                  </a>
+                  <a href="#" class="btn btn-outline-success btn-sm rounded-3 fw-bold px-3">
+                    <i class="bi bi-award me-1"></i> الأوسمة
+                  </a>
+                </div>
                 <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb float-sm-end mb-0">
-                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none">كودي</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">لوحة التحكم</li>
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="{{ url('/admin') }}" class="text-decoration-none fw-semibold">كودي</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@yield('main_title' , 'لوحة التحكم')</li>
                   </ol>
                 </nav>
               </div>
@@ -739,147 +950,8 @@
         <div class="app-content">
           <!--begin::Container-->
           <div class="container-fluid">
-            @yield('content')
+            @yield('contact')
 
-            <!--begin::Stat Boxes Row (محتوى افتراضي متكامل للعرض الفوري)-->
-            <div class="row g-3 mb-4">
-              <div class="col-lg-3 col-6">
-                <div class="card kody-stat-card text-bg-primary h-100">
-                  <div class="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                      <h3 class="fs-2 fw-black mb-1">342</h3>
-                      <p class="mb-0 fw-semibold opacity-90">الأطفال المسجلون</p>
-                    </div>
-                    <i class="bi bi-emoji-smile-fill fs-1 opacity-50"></i>
-                  </div>
-                  <div class="card-footer bg-black bg-opacity-10 border-0 py-2">
-                    <a href="#" class="text-white text-decoration-none fs-7 fw-bold d-flex justify-content-between align-items-center">
-                      <span>عرض التفاصيل</span>
-                      <i class="bi bi-arrow-left-circle"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-6">
-                <div class="card kody-stat-card text-bg-success h-100">
-                  <div class="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                      <h3 class="fs-2 fw-black mb-1">27</h3>
-                      <p class="mb-0 fw-semibold opacity-90">الدروس المنشورة</p>
-                    </div>
-                    <i class="bi bi-code-square fs-1 opacity-50"></i>
-                  </div>
-                  <div class="card-footer bg-black bg-opacity-10 border-0 py-2">
-                    <a href="#" class="text-white text-decoration-none fs-7 fw-bold d-flex justify-content-between align-items-center">
-                      <span>إدارة الدروس</span>
-                      <i class="bi bi-arrow-left-circle"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-6">
-                <div class="card kody-stat-card text-bg-info text-white h-100">
-                  <div class="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                      <h3 class="fs-2 fw-black mb-1">198</h3>
-                      <p class="mb-0 fw-semibold opacity-90">أولياء الأمور</p>
-                    </div>
-                    <i class="bi bi-people-fill fs-1 opacity-50"></i>
-                  </div>
-                  <div class="card-footer bg-black bg-opacity-10 border-0 py-2">
-                    <a href="#" class="text-white text-decoration-none fs-7 fw-bold d-flex justify-content-between align-items-center">
-                      <span>قائمة الحسابات</span>
-                      <i class="bi bi-arrow-left-circle"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-6">
-                <div class="card kody-stat-card text-bg-warning text-dark h-100">
-                  <div class="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                      <h3 class="fs-2 fw-black mb-1">1,290</h3>
-                      <p class="mb-0 fw-bold opacity-90">الأوسمة الممنوحة</p>
-                    </div>
-                    <i class="bi bi-award-fill fs-1 opacity-50"></i>
-                  </div>
-                  <div class="card-footer bg-black bg-opacity-10 border-0 py-2">
-                    <a href="#" class="text-dark text-decoration-none fs-7 fw-bold d-flex justify-content-between align-items-center">
-                      <span>سجل التلعيب</span>
-                      <i class="bi bi-arrow-left-circle"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--end::Stat Boxes Row-->
-
-            <!--begin::Main Charts & Tables Row-->
-            <div class="row g-4">
-              <!-- رسم بياني لتقدم الطلاب -->
-              <div class="col-lg-7">
-                <div class="card kody-card h-100">
-                  <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title mb-0 fs-5 fw-bold">
-                      <i class="bi bi-graph-up-arrow text-primary me-2"></i>
-                      نشاط إتمام الدروس والتحديات الأسبوعي
-                    </h3>
-                    <span class="badge text-bg-success rounded-pill">+18% نمو</span>
-                  </div>
-                  <div class="card-body">
-                    <div style="height: 280px">
-                      <canvas id="revenue-chart"></canvas>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- حالة نسخ المسارات -->
-              <div class="col-lg-5">
-                <div class="card kody-card h-100">
-                  <div class="card-header">
-                    <h3 class="card-title mb-0 fs-5 fw-bold">
-                      <i class="bi bi-layers-fill text-success me-2"></i>
-                      حالة المسارات التعليمية
-                    </h3>
-                  </div>
-                  <div class="card-body p-0">
-                    <div class="table-responsive">
-                      <table class="table table-hover align-middle mb-0">
-                        <thead class="table-light">
-                          <tr>
-                            <th>المسار</th>
-                            <th>النسخة</th>
-                            <th>الحالة</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td class="fw-bold">البراعم (7-9 سنوات)</td>
-                            <td><span class="badge text-bg-light border">v1.0</span></td>
-                            <td><span class="badge text-bg-success">منشور</span></td>
-                          </tr>
-                          <tr>
-                            <td class="fw-bold">بايثون (10-12 سنة)</td>
-                            <td><span class="badge text-bg-light border">v1.2</span></td>
-                            <td><span class="badge text-bg-success">منشور</span></td>
-                          </tr>
-                          <tr>
-                            <td class="fw-bold">المحترفين (13-15 سنة)</td>
-                            <td><span class="badge text-bg-light border">v2.0</span></td>
-                            <td><span class="badge text-bg-warning">مسودة</span></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--end::Main Charts & Tables Row-->
           </div>
           <!--end::Container-->
         </div>
@@ -895,7 +967,7 @@
         <!--begin::Copyright-->
         <strong>
           جميع الحقوق محفوظة &copy; {{ now()->year }}&nbsp;
-          <a href="#" class="text-decoration-none text-primary fw-bold">منصة كودي لتعليم البرمجة للأطفال</a>.
+          <a href="{{ route('cms/home') }}" class="text-decoration-none text-primary fw-bold">منصة كودي لتعليم البرمجة للأطفال</a>.
         </strong>
         <!--end::Copyright-->
       </footer>
@@ -1079,45 +1151,9 @@
     </script>
     <!--end::Chart.js theme preset-->
 
-    <!-- Chart.js Demo Initialization -->
-    <script>
-      const chartCanvas = document.querySelector('#revenue-chart');
-      if (chartCanvas && globalThis.lteChartTheme) {
-        const { areaFill } = globalThis.lteChartTheme;
-        new Chart(chartCanvas, {
-          type: 'line',
-          data: {
-            labels: ['السبت', 'الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة'],
-            datasets: [
-              {
-                label: 'الدروس المكتملة',
-                data: [42, 58, 65, 79, 94, 110, 128],
-                borderColor: '#2563eb',
-                backgroundColor: areaFill('#2563eb'),
-                pointBackgroundColor: '#2563eb',
-                fill: true,
-                tension: 0.4,
-              },
-              {
-                label: 'التحديات المحلولة',
-                data: [35, 49, 60, 72, 88, 102, 118],
-                borderColor: '#10b981',
-                backgroundColor: areaFill('#10b981'),
-                pointBackgroundColor: '#10b981',
-                fill: true,
-                tension: 0.4,
-              },
-            ],
-          },
-          options: {
-            scales: {
-              y: { beginAtZero: true },
-            },
-          },
-        });
-      }
-    </script>
     <!--end::Script-->
+
+    @yield('script')
   </body>
   <!--end::Body-->
 </html>

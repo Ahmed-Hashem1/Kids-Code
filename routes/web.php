@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\{AuthenticatedSessionController, EmailVerificationController, NewPasswordController, PasswordResetLinkController, RegisteredParentController, TemporaryPasswordController};
-use App\Http\Controllers\{ChallengeAttemptController, DashboardController, LessonController, LessonMediaController};
+use App\Http\Controllers\{ChallengeAttemptController, DashboardController, LessonController, LessonMediaController, PathwayController};
 
 Route::get('/', [DashboardController::class, 'redirect'])->name('home');
 
@@ -76,7 +76,23 @@ Route::middleware(['auth', 'active'])->group(function () {
         ->middleware(['role:child,admin', 'password.change'])
         ->name('media.show');
 });
+Route::prefix('cms/')->group(function(){
 
-Route::view('cms.parent', 'cms.parent')->name('cms.parent');
-Route::view('cms.parent2', 'cms.parent2')->name('cms.parent2');
-Route::view('/cms/dashboard', 'cms.dashboard')->name('cms.dashboard');
+    Route::view('parent', 'cms/parent')->name('cms/parent');
+    Route::view('parent2', 'cms/parent2')->name('cms/parent2');
+    Route::view('Paths', 'cms/Paths')->name('cms/Paths');
+    Route::view('placementTest', 'cms/placementTest')->name('cms/placementTest');
+    Route::view('home', 'cms/home')->name('cms/home');
+    Route::view('dashboard', 'cms.dashboard')->name('cms.dashboard');
+    Route::get('admin', fn() => view('cms.dashboard-home'))->name('admin.dashboard');
+    Route::resource('pathways' , PathwayController::class);
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('pathways/trash', [\App\Http\Controllers\Admin\PathwayController::class, 'trash'])->name('pathways.trash');
+    Route::post('pathways/{id}/restore', [\App\Http\Controllers\Admin\PathwayController::class, 'restore'])->name('pathways.restore');
+    Route::delete('pathways/{id}/force-delete', [\App\Http\Controllers\Admin\PathwayController::class, 'forceDelete'])->name('pathways.forceDelete');
+    Route::resource('pathways', \App\Http\Controllers\Admin\PathwayController::class);
+});
+
+// Route::view('pathways/index', 'pathways/index')->name('pathways/index');

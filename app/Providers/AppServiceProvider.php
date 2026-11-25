@@ -3,11 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\{App, RateLimiter};
 use Illuminate\Http\Request;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Str;
+use Illuminate\Pagination\Paginator as PaginationPaginator;
+use Illuminate\Support\{ServiceProvider, Str};
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,5 +31,7 @@ class AppServiceProvider extends ServiceProvider
 
             return Limit::perMinute(5)->by(Str::transliterate($identity.'|'.$request->ip()));
         });
+        PaginationPaginator::useBootstrap();
     }
+
 }

@@ -7,7 +7,9 @@
 @endsection
 @section('contact')
 
-@endsection
 @section('script')
 
 @endsection
+
+@endsection
+ 

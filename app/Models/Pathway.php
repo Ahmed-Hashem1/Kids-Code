@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\{HasMany, HasOne};
+
 
 class Pathway extends Model
 {
@@ -26,4 +26,5 @@ class Pathway extends Model
     {
         return $this->hasOne(PathVersion::class)->where('status', 'published');
     }
+    use SoftDeletes;
 }
